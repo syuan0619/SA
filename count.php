@@ -78,24 +78,35 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    
-                    <h1 class="mb-5">輸入騎車/開車公里數:</h1>
                     <form>
-                    <input type = "text" name = "開車公里">
-                    <input type = "submit" name = "開車" value = "計算">
-                        
-                    <h1 class="mb-5"></h1>
-                    <h1 class="mb-5">輸入搭乘捷運站數:</h1>
+                    <?php
+                   
+                    $kind = $_POST["kind"];
+                    switch($kind){
+                        case "car":
+                            echo "請輸入騎/開車公里數:";
+                            break;
+                        case "bus":
+                            echo "請輸入公車搭乘站數:";
+                            break;
+                        case "mrt":
+                            echo "請輸入捷運搭乘站數:";
+                            break;
+                        case "water":
+                            echo "請輸入用水度數:";
+                            break;
+                        case "ele":
+                            echo "請輸入用電度數:";
+                            break;
+                        case "gas":
+                            echo "請輸入瓦斯度數:";
+                            break;    
+                        }
                     
-                        <input type = "text" name = "捷運站數">
-                        <input type = "submit" name = "捷運" value = "計算">
-                    <h1 class="mb-5"></h1>
-                    <h1 class="mb-5">輸入公車公里數:</h1>
-                        
-                        <input type = "text" name = "公車公里數">
-                        <input type = "submit" name = "公車" value = "計算">    
-
-                        </form>      
+                    ?>
+                    <input type = "text" name = "值">
+                    <input type = "submit" name = "值" value = "計算">
+                    </form>     
                 </div>
             </div>
         </div>
