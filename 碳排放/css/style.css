@@ -16,6 +16,16 @@
 .fw-semi-bold {
     font-weight: 700 !important;
 }
+classynav ul li.cn-dropdown-item {
+    position: relative;
+    z-index: 10;
+}
+
+.classynav ul li.cn-dropdown-item ul li {
+    position: relative;
+    z-index: 10;
+}
+
 
 .back-to-top {
     position: fixed;

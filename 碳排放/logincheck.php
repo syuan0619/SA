@@ -9,7 +9,7 @@ $rs = mysqli_query($link, $sql);
 $row = mysqli_fetch_array($rs);
 if (isset($row)) {
     $_SESSION["ID"] = $row["ID"];
-    $_SESSION["password"] = $row["Password"];
+    $_SESSION["Name"] = $row["Name"];
     header("location:index.php");
 } else {
 ?>
