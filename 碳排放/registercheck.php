@@ -8,7 +8,7 @@ session_start();
 
 
     if ($ID != null && $Password != null) {
-        $link = mysqli_connect("localhost", "root", "", "sa");
+        $link = mysqli_connect("localhost", "root", "", "SA");
         $sql  = "insert into user (ID, Password, Name, Phone, Email) values ('$ID', '$Password', '$Name', '$Phone','$Email')";
 ?>
         <?php

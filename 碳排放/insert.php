@@ -107,7 +107,7 @@
                             <div class="row g-3">
                                 <div>
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="Name" placeholder="帳號">
+                                        <input type="text" class="form-control" name="Name" placeholder="姓名">
                                         <label for="帳號">姓名</label>
                                     </div>
                                 </div>
@@ -126,13 +126,13 @@
 
                                 <div>
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" name="確認密碼" placeholder="密碼">
+                                        <input type="text" class="form-control" name="確認密碼" placeholder="密碼">
                                         <label for="確認密碼">確認密碼</label>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" name="Phone" placeholder="密碼">
+                                        <input type="text" class="form-control" name="Phone" placeholder="密碼">
                                         <label for="電話">電話</label>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit">註冊</button>
                                 </div>
                             </div>
                         </form>

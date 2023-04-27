@@ -90,8 +90,8 @@
                             <option value="瓦斯">瓦斯</option>
 
                         </select>
-                        
-                        <h1></h1>
+
+                        <h1>請輸入使用量</h1>
                         <input type="number" name="calculate" required>
                         <br>
                         <br>
@@ -110,8 +110,6 @@
                                 case "瓦斯":
                                     $result = $calculate * 1.879;
                                     break;
-                                    
-                                        
                             }
                             echo "<h3>使用 {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
                         }
