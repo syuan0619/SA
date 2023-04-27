@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 <?php session_start(); ?>
+
+<html lang="en">
+    
 
 <head>
     <meta charset="utf-8">
-    <title>註冊</title>
+    <title>Restoran - Bootstrap Restaurant Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -70,23 +72,18 @@
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">登入註冊</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="登入.html" class="dropdown-item active">登入</a>
-                            <a href="註冊.html" class="dropdown-item">註冊</a>
-                        </div>
-                    </div>
+                    <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
                 </div>
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">註冊</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">註冊</li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
                         </ol>
                     </nav>
                 </div>
@@ -98,64 +95,82 @@
         <!-- Reservation Start -->
         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
             <div class="row g-0">
-
-                <div class=" bg-dark d-flex align-items-center">
+                <div class="col-md-6">
+                    <div class="video">
+                        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 bg-dark d-flex align-items-center">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                        <h1 class="text-white mb-4">註冊</h1>
-                        <form action="registercheck.php" method="post">
+                        <h1 class="text-white mb-4">Book A Table Online</h1>
+                        <form action="logincheck.php" method="post">
                             <div class="row g-3">
-                                <div>
+                                <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="Name" placeholder="帳號">
-                                        <label for="帳號">姓名</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                        <label for="name">Your Name</label>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="ID" placeholder="帳號">
-                                        <label for="帳號">帳號</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                        <label for="email">Your Email</label>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="Password" placeholder="帳號">
-                                        <label for="密碼">密碼</label>
+                                <div class="col-md-6">
+                                    <div class="form-floating date" id="date3" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                        <label for="datetime">Date & Time</label>
                                     </div>
                                 </div>
-
-                                <div>
+                                <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" name="確認密碼" placeholder="密碼">
-                                        <label for="確認密碼">確認密碼</label>
-                                    </div>
+                                        <select class="form-select" id="select1">
+                                          <option value="1">People 1</option>
+                                          <option value="2">People 2</option>
+                                          <option value="3">People 3</option>
+                                        </select>
+                                        <label for="select1">No Of People</label>
+                                      </div>
                                 </div>
-                                <div>
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" name="Phone" placeholder="密碼">
-                                        <label for="電話">電話</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" name="Email" placeholder="密碼">
-                                        <label for="信箱">信箱</label>
+                                        <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Special Request</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
 
-
+        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 16:9 aspect ratio -->
+                        <div class="ratio ratio-16x9">
+                            <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                                allow="autoplay"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Reservation Start -->
-
+        
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -202,10 +217,10 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
                             Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">

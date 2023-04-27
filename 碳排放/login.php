@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start(); ?>
 
 <head>
     <meta charset="utf-8">
-    <title>註冊</title>
+    <title>登入</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -77,16 +76,17 @@
                             <a href="註冊.html" class="dropdown-item">註冊</a>
                         </div>
                     </div>
+
                 </div>
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">註冊</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">登入</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">註冊</li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">登入</li>
                         </ol>
                     </nav>
                 </div>
@@ -102,15 +102,9 @@
                 <div class=" bg-dark d-flex align-items-center">
                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                        <h1 class="text-white mb-4">註冊</h1>
-                        <form action="registercheck.php" method="post">
+                        <h1 class="text-white mb-4">登入</h1>
+                        <form action="logincheck.php" method="post">
                             <div class="row g-3">
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="Name" placeholder="帳號">
-                                        <label for="帳號">姓名</label>
-                                    </div>
-                                </div>
                                 <div>
                                     <div class="form-floating">
                                         <input type="text" class="form-control" name="ID" placeholder="帳號">
@@ -119,27 +113,8 @@
                                 </div>
                                 <div>
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="Password" placeholder="帳號">
+                                        <input type="password" class="form-control" name="password" placeholder="密碼">
                                         <label for="密碼">密碼</label>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="password" class="form-control" name="確認密碼" placeholder="密碼">
-                                        <label for="確認密碼">確認密碼</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" name="Phone" placeholder="密碼">
-                                        <label for="電話">電話</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" name="Email" placeholder="密碼">
-                                        <label for="信箱">信箱</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -147,7 +122,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
