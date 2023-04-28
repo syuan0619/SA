@@ -1,11 +1,11 @@
 <?php session_start();
-print_r($_SESSION); ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>碳排放計算系統</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -49,7 +49,7 @@ print_r($_SESSION); ?>
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-white bg-white px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>碳排放計算系統</h1>
+                    <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
 
 
                 </a>
@@ -67,7 +67,9 @@ print_r($_SESSION); ?>
                 </div>
                 <div>
                     <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
+                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                        </li>
                     <?php } else { ?>
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>

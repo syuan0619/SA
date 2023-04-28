@@ -47,7 +47,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+                    <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -98,16 +98,16 @@
 
                 <form method="post" action="">
                     <select class="form-select" name="kind">
-                        <option value="開車">開車</option>
-                        <option value="騎車">騎車</option>
-                        <option value="公車">公車</option>
-                        <option value="捷運">捷運</option>
-                        <option value="水">水</option>
-                        <option value="電">電</option>
-                        <option value="瓦斯">瓦斯</option>
+                        <option value="開車">開車(公里)</option>
+                        <option value="騎車">騎車(公里)</option>
+                        <option value="公車">公車(分鐘)</option>0.2075kg/min
+                        <option value="捷運">捷運(站)</option>
+                        <option value="水">水(度)</option>
+                        <option value="電">電(度)</option>
+                        <option value="瓦斯">瓦斯(度)</option>
 
                     </select>
-                    <h1>請輸入使用量</h1>
+                    <h1>請輸入數值</h1>
                     <input type="number" name="calculate" required>
                     <br>
                     <br>
@@ -140,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <!-- Contact End -->
 
 

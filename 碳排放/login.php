@@ -47,7 +47,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+                    <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -62,18 +62,13 @@
                         <a href="contact.php" class="nav-item nav-link">計算</a>
                     </div>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
-                    <?php } else { ?>
-                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
 
-                    <?php } ?>
-
+                <div class="col-1">
+                    <a href="insert.php"><button class="btn btn-primary w-100 py-3" type="submit">註冊</button></a>
                 </div>
-                
+
+
+
 
         </div>
         </nav>
@@ -105,24 +100,28 @@
                         <div class="row g-3">
                             <div>
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" name="ID" placeholder="帳號">
+                                    <input type="text" class="form-control" name="ID" placeholder="帳號" require>
                                     <label for="帳號">帳號</label>
                                 </div>
                             </div>
                             <div>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" name="password" placeholder="密碼">
+                                    <input type="password" class="form-control" name="password" placeholder="密碼" require>
                                     <label for="密碼">密碼</label>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
                             </div>
-                        </div>
+
                     </form>
                 </div>
+
             </div>
+
         </div>
+
+    </div>
     </div>
 
 

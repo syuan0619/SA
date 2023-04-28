@@ -47,7 +47,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+                    <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -59,7 +59,7 @@
                         <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="menu.html" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="contact.php" class="nav-item nav-link">計算</a>
+                        <a href="count.php" class="nav-item nav-link">計算</a>
                     </div>
                 </div>
                 <div>
