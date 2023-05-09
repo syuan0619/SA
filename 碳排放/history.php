@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 
 <head>
+    
     <meta charset="utf-8">
-    <title>count</title>
+    <title>登入</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -59,94 +61,105 @@
                         <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
+                        <a href="contact.php" class="nav-item nav-link">計算</a>
                     </div>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
-                    <?php } else { ?>
-                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
 
-                    <?php } ?>
-
+                <div class="col-1">
+                    <a href="insert.php"><button class="btn btn-primary w-100 py-3" type="submit">登入</button></a>
                 </div>
+
+
+
 
         </div>
         </nav>
 
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">計算</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">歷史紀錄</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">計算</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">歷史紀錄</li>
                     </ol>
                 </nav>
             </div>
         </div>
-    </div> <!-- Navbar & Hero End -->
+    </div>
+    <!-- Navbar & Hero End -->
 
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Reservation Start -->
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
 
-                <form method="post" action="">
-                    <select class="form-select" name="kind">
-                        <option value="開車">開車(公里)</option>
-                        <option value="騎車">騎車(公里)</option>
-                        <option value="公車">公車(分鐘)</option>0.2075kg/min
-                        <option value="捷運">捷運(站)</option>
-                        <option value="水">水(度)</option>
-                        <option value="電">電(度)</option>
-                        <option value="瓦斯">瓦斯(度)</option>
-
-                    </select>
-                    <h1>請輸入數值</h1>
-                    <input type="number" name="calculate" required>
-                    <br>
-                    <br>
-                    <input type="submit" name="計算" required>
-                    <?php
-                    if (isset($_POST['calculate']) && isset($_POST['kind'])) {
-                        $calculate = $_POST['calculate'];
-                        $kind = $_POST['kind'];
-                        switch ($kind) {
-                            case "水":
-                                $result = $calculate * 0.0554;
-                                break;
-                            case "電":
-                                $result = $calculate * 0.509;
-                                break;
-                            case "瓦斯":
-                                $result = $calculate * 1.879;
-                                break;
-                        }
-                        echo "<h3>使用 {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
-                    }
-                    ?>
-                </form>
-
-
-
-
-
+            <div class=" bg-dark d-flex align-items-center">
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+                    <h1 class="text-white mb-4">歷史紀錄</h1>
+                    <label for="start_date">起始日期：</label>
+                    <input type="date" id="start_date">
+                    <label for="end_date">截止日期：</label>
+                    <input type="date" id="end_date">
+                    <button onclick="searchData()">查詢</button>
+                    <div id="result"></div>
+                    <script src="search.js"></script>
+                    
+                </div>
 
             </div>
+
         </div>
+
+    </div>
     </div>
 
-    <!-- Contact End -->
+
+    <!-- Reservation Start -->
 
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Reservation</a>
+                    <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                    <h5 class="text-light fw-normal">Monday - Saturday</h5>
+                    <p>09AM - 09PM</p>
+                    <h5 class="text-light fw-normal">Sunday</h5>
+                    <p>10AM - 08PM</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
+                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="copyright">
                 <div class="row">

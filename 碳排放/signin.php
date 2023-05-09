@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>每日簽到</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -58,7 +58,7 @@
                         <a href="index.php" class="nav-item nav-link">首頁</a>
                         <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="menu.html" class="nav-item nav-link">歷史紀錄</a>
+                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
                     </div>
                 </div>

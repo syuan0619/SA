@@ -62,7 +62,7 @@ print_r($_SESSION);
                         <a href="index.html" class="nav-item nav-link">首頁</a>
                         <a href="about.html" class="nav-item nav-link">登入</a>
                         <a href="service.html" class="nav-item nav-link">簽到</a>
-                        <a href="menu.html" class="nav-item nav-link">歷史紀錄</a>
+                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="contact.html" class="nav-item nav-link">計算</a>
                     </div>
                 </div>
