@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +96,6 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-
                 <form method="post" action="">
                     <select class="form-select" name="kind">
                         <option value="開車">開車(公里)</option>
@@ -111,7 +111,7 @@
                     <input type="number" name="calculate" required>
                     <br>
                     <br>
-                    <input type="submit" name="計算" required>
+                    <input type="submit" name="計算" value="開始計算" required>
                     <?php
                     if (isset($_POST['calculate']) && isset($_POST['kind'])) {
                         $calculate = $_POST['calculate'];
@@ -126,17 +126,28 @@
                             case "瓦斯":
                                 $result = $calculate * 1.879;
                                 break;
+                            case "捷運":
+                                $result = $calculate * 0.0554;
+                                break;
+                            case "公車":
+                                $result = $calculate * 0.2075;
+                                break;
+                            case "開車":
+                                $result = $calculate * 0.412;
+                                break;
+                            case "騎車":
+                                $result = $calculate * 0.125;
+                                break;
                         }
-                        echo "<h3>使用 {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
+                        echo "<h3> {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
                     }
                     ?>
                 </form>
-
-
-
-
-
-
+                <form method="post" action="insert_his.php">
+                    <input type="hidden" name="result" value="<?php echo $result; ?>">
+                    <input type="hidden" name="kind" value="<?php echo $kind; ?>">
+                    <input type="submit" value="儲存結果" required>
+                </form>
             </div>
         </div>
     </div>
