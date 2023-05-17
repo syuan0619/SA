@@ -134,9 +134,7 @@ $end_date = $_POST['end_date'];
         <?php
 
         } ?>
-        <table align="center" width=500>
-            <h1 align="center">查詢期間內共製造 <? echo $C ?>公斤二氧化碳</h1>
-        </table>
+       
 
 
 
