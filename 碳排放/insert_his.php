@@ -4,7 +4,6 @@ $ID = $_SESSION['ID'];
 $Name = $_SESSION['Name'];
 $result = $_POST['result'];
 $kind = $_POST['kind'];
-echo $result, $kind;
 date_default_timezone_set('Asia/Taipei');
 $date = date('Y-m-d H:i:s');
 

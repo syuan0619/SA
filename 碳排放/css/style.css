@@ -422,7 +422,9 @@ classynav ul li.cn-dropdown-item {
     background: var(--primary);
     border-color: var(--primary);
 }
-
+.center {
+    text-align: center;
+}
 
 /*** Footer ***/
 .footer .btn.btn-social {
