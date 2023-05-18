@@ -1,30 +1,66 @@
 <?php
 session_start();
-if (!isset($_SESSION["ID"])) {
-    header("Location: login.php");
-}
-$user_id = $_SESSION["ID"];
-$mysqli = new mysqli("localhost", "root", "", "sa");
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-}
-$today = date("Y-m-d");
-$query = "SELECT * FROM signin WHERE ID = '$ID' AND signin_date = '$today'";
-$result = $mysqli->query($query);
-if ($result->num_rows > 0) {
+$ID = $_SESSION["ID"];
+date_default_timezone_set('Asia/Taipei');
+$date = date('Y-m-d');
+$today = date('N');
+$weekDay = $_GET['weekDay'];
+if ($weekDay != "$today") {
 ?>
     <script>
-        alert("註冊成功!");
+        alert("簽到失敗!");
         location.href = "index.php";
     </script>
-<?php
-} else {
-    $now = date("H:i:s");
-    $query = "INSERT INTO signin (ID, signin_date, signin_time) VALUES ('$ID', '$today', '$now')";
-    $mysqli->query($query);
-?>
-    <script>
-        alert("註冊成功!");
-        location.href = "index.php";
-    </script><?
+    <?php
+
+}
+
+if ($ID != null) {
+    if (isset($_GET['weekDay'])) {
+        $link = mysqli_connect("localhost", "root", "", "sa");
+        $sql1 = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
+
+        // 查询用户的签到记录
+        $result = mysqli_query($link, $sql1);
+
+        if (mysqli_num_rows($result) != 0) {
+            // 用户已经签到
+    ?>
+            <script>
+                alert("簽到失敗!");
+                location.href = "index.php";
+            </script>
+            <?php
+        } else {
+
+            $sql  = "insert INTO signin (ID, Date, weekDay) values ('$ID', '$date', '$weekDay')";
+            if (mysqli_query($link, $sql)) {
+            ?>
+                <script>
+                    alert("簽到成功!");
+                    location.href = "index.php";
+                </script>
+            <?php
+            } else { ?>
+
+                <script>
+                    alert("簽到失敗!");
+
+                    location.href = "index.php";
+                </script>
+        <?php
+
             }
+        }
+        // 查询用户的签到记录
+    } else { ?>
+        <script>
+            alert("請先登入!");
+            location.href = "login.php";
+        </script>
+<?php
+    }
+}
+
+
+?>

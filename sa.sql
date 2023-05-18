@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-05-17 08:23:19
+-- 產生時間： 2023-05-18 15:55:26
 -- 伺服器版本： 10.4.28-MariaDB
 -- PHP 版本： 8.2.4
 
@@ -60,6 +60,37 @@ CREATE TABLE `history` (
   `kind` varchar(10) NOT NULL,
   `Crecord` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `history`
+--
+
+INSERT INTO `history` (`ID`, `Name`, `Date`, `kind`, `Crecord`) VALUES
+('nmsl8787', '林寶', '2023-05-17', '開車', 41.2),
+('nmsl8787', '林寶', '2023-05-17', '水', 1.108),
+('abc', 'allen', '2023-05-17', '公車', 6.225),
+('abc', 'allen', '2023-05-17', '騎車', 6.25);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `signin`
+--
+
+CREATE TABLE `signin` (
+  `ID` varchar(20) NOT NULL,
+  `Date` date NOT NULL,
+  `weekDay` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 傾印資料表的資料 `signin`
+--
+
+INSERT INTO `signin` (`ID`, `Date`, `weekDay`) VALUES
+('abc', '2023-05-18', '4'),
+('nmsl8787', '2023-05-18', '4'),
+('ccccc', '2023-05-18', '4');
 
 --
 -- 已傾印資料表的索引

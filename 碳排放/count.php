@@ -100,8 +100,8 @@
                     <select class="form-select" name="kind">
                         <option value="開車">開車(公里)</option>
                         <option value="騎車">騎車(公里)</option>
-                        <option value="公車">公車(分鐘)</option>0.2075kg/min
-                        <option value="捷運">捷運(站)</option>
+                        <option value="搭乘公車">公車(分鐘)</option>
+                        <option value="搭乘捷運">捷運(站)</option>
                         <option value="水">水(度)</option>
                         <option value="電">電(度)</option>
                         <option value="瓦斯">瓦斯(度)</option>
@@ -126,10 +126,10 @@
                             case "瓦斯":
                                 $result = $calculate * 1.879;
                                 break;
-                            case "捷運":
+                            case "搭乘捷運":
                                 $result = $calculate * 0.0554;
                                 break;
-                            case "公車":
+                            case "搭乘公車":
                                 $result = $calculate * 0.2075;
                                 break;
                             case "開車":
