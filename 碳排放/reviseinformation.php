@@ -2,11 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-
     <meta charset="utf-8">
-    <title>歷史紀錄</title>
+    <title>reviseinformation</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -59,19 +57,23 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
+                        <?php if (empty($_SESSION["ID"])) { ?>
+                            <a href="login.php" class="nav-item nav-link">登入</a>
+                            <a href="insert.php" class="nav-item nav-link">註冊</a>
+
+                        <?php } else { ?>
+
+
+                        <?php } ?>
+                        <a href="information.php" class="nav-item nav-link">個人資料</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
-                        <a href="information.php" class="nav-item nav-link">個人資料</a>
-
                     </div>
                 </div>
                 <div>
                     <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
-                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
-                        </li>
-
+                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
                     <?php } else { ?>
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
@@ -79,51 +81,50 @@
 
                     <?php } ?>
 
-
                 </div>
 
         </div>
         </nav>
-
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">歷史紀錄</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">個人資料</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">歷史紀錄</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">個人資料</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
-    <!-- Navbar & Hero End -->
-
-
-    <!-- Reservation Start -->
+    <!-- Contact Start -->
     <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
         <div class="row g-0">
 
             <div class=" bg-dark d-flex align-items-center">
-                <form action="searchHis.php" method="post">
-                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">History</h5>
-                        <h1 class="text-white mb-4">歷史紀錄</h1>
-                        <label for="start_date">起始日期：</label>
-                        <input type="date" name="start_date">
-                        <label for="end_date">截止日期：</label>
-                        <input type="date" name="end_date">
-                        <button onclick="searchData()">查詢</button>
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reviseinformation</h5>
+                    <h1 class="text-white mb-4">修改密碼</h1>
+                    <form action="rev.php" method="post">
+                        <div class="row g-3">
 
-                    </div>
+                            <div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="Password" placeholder="密碼">
+                                    <label for="密碼">密碼</label>
+                                </div>
+                            </div>
 
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">送出</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            </form>
         </div>
-
     </div>
-    </div>
-
 
 
 

@@ -20,11 +20,10 @@ if ($ID != null) {
         $link = mysqli_connect("localhost", "root", "", "sa");
         $sql1 = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
 
-        // 查询用户的签到记录
         $result = mysqli_query($link, $sql1);
 
         if (mysqli_num_rows($result) != 0) {
-            // 用户已经签到
+
     ?>
             <script>
                 alert("簽到失敗!");
@@ -35,6 +34,7 @@ if ($ID != null) {
 
             $sql  = "insert INTO signin (ID, Date, weekDay) values ('$ID', '$date', '$weekDay')";
             if (mysqli_query($link, $sql)) {
+
             ?>
                 <script>
                     alert("簽到成功!");
@@ -50,6 +50,7 @@ if ($ID != null) {
                 </script>
         <?php
 
+
             }
         }
         // 查询用户的签到记录
@@ -58,7 +59,20 @@ if ($ID != null) {
             alert("請先登入!");
             location.href = "login.php";
         </script>
+        <?php
+    }
+    if (mysqli_query($link, $sql2)) {
+
+
+        $sql2 = "update account set Points = Points + 1 and PointRecords='$today' where ID='$ID' ";
+        if (mysqli_query($link, $sql2)) {
+        ?>
+
+            <script>
+                location.href = "index.php";
+            </script>
 <?php
+        }
     }
 }
 

@@ -2,11 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-
     <meta charset="utf-8">
-    <title>歷史紀錄</title>
+    <title>個人資料</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -73,12 +71,12 @@
                         </li>
 
                     <?php } else { ?>
+
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                         </li>
 
                     <?php } ?>
-
 
                 </div>
 
@@ -87,66 +85,71 @@
 
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">歷史紀錄</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">個人資料</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">歷史紀錄</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">個人資料</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
-    <!-- Navbar & Hero End -->
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <table class="container-xxl py-5">
+                    <thead>
+                        <tr>
+                            <th>會員帳號</th>
+                            <th>會員姓名</th>
+                            <th>會員密碼</th>
+                            <th>電子信箱</th>
+                            <th>電話號碼</th>
+                            <th>獲得點數</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $ID = $_SESSION['ID'];
+                    $link = mysqli_connect("localhost", "root", "", "sa");
+                    $sql = "select * from account where ID = '$ID'";
+                    $result = mysqli_query($link, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>", $row['ID'], "</td><td>", $row['Name'], "</td><td>", $row['Password'], " </td><td>", $row['Email'], "</td><td>", $row['phone'], " </td><td>", $row['Points'], " </td></tr>";
+                    }
+
+                    ?>
+                    <tr>
+
+                        <td colspan=5><a href="reviseinformation.php" class="btn btn-primary py-2 px-4">修改會員資料</a></td>
+                    </tr>
 
 
-    <!-- Reservation Start -->
-    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="row g-0">
 
-            <div class=" bg-dark d-flex align-items-center">
-                <form action="searchHis.php" method="post">
-                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">History</h5>
-                        <h1 class="text-white mb-4">歷史紀錄</h1>
-                        <label for="start_date">起始日期：</label>
-                        <input type="date" name="start_date">
-                        <label for="end_date">截止日期：</label>
-                        <input type="date" name="end_date">
-                        <button onclick="searchData()">查詢</button>
+                    <!-- Contact End -->
 
-                    </div>
 
+
+
+                    <!-- Back to Top -->
+                    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
-            </form>
-        </div>
 
-    </div>
-    </div>
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/wow/wow.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/counterup/counterup.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+            <script src="lib/tempusdominus/js/moment.min.js"></script>
+            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-
-
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
 </body>
 
 </html>

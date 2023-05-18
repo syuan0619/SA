@@ -56,72 +56,82 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
+                        <a href="information.php" class="nav-item nav-link">個人資料</a>
+
                     </div>
                 </div>
+                <div>
+                    <?php if (empty($_SESSION["ID"])) { ?>
+                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                        </li>
 
-                <div class="col-1">
-                    <a href="insert.php"><button class="btn btn-primary w-100 py-3" type="submit">註冊</button></a>
+                    <?php } else { ?>
+                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                        </li>
+
+                    <?php } ?>
+
+
+
+
+
                 </div>
+            </nav>
 
-
-
-
-        </div>
-        </nav>
-
-        <div class="container-xxl py-5 bg-dark hero-header mb-5">
-            <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">登入</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">登入</li>
-                    </ol>
-                </nav>
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">登入</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">登入</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Navbar & Hero End -->
+        <!-- Navbar & Hero End -->
 
 
-    <!-- Reservation Start -->
-    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="row g-0">
+        <!-- Reservation Start -->
+        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="row g-0">
 
-            <div class=" bg-dark d-flex align-items-center">
-                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                    <h1 class="text-white mb-4">登入</h1>
-                    <form action="logincheck.php" method="post">
-                        <div class="row g-3">
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" name="ID" placeholder="帳號" require>
-                                    <label for="帳號">帳號</label>
+                <div class=" bg-dark d-flex align-items-center">
+                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+                        <h1 class="text-white mb-4">登入</h1>
+                        <form action="logincheck.php" method="post">
+                            <div class="row g-3">
+                                <div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" name="ID" placeholder="帳號" require>
+                                        <label for="帳號">帳號</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" name="password" placeholder="密碼" require>
-                                    <label for="密碼">密碼</label>
+                                <div>
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" name="password" placeholder="密碼" require>
+                                        <label for="密碼">密碼</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
-                            </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
+                                </div>
 
-                    </form>
+                        </form>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
-    </div>
     </div>
 
 

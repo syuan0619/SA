@@ -55,40 +55,43 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="login.php" class="nav-item nav-link">登入</a>
-                        <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
-                    </div>
+                    <a href="index.php" class="nav-item nav-link">首頁</a>
+                    <a href="signin.php" class="nav-item nav-link">簽到</a>
+                    <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                    <a href="count.php" class="nav-item nav-link">計算</a>
+                    <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
-                    <?php } else { ?>
-                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
+        </div>
+        <div>
+            <?php if (empty($_SESSION["ID"])) { ?>
+                <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                    <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                </li>
 
-                    <?php } ?>
+            <?php } else { ?>
+                <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                    <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                </li>
 
-                </div>
+            <?php } ?>
+
 
         </div>
-        </nav>
 
-        <div class="container-xxl py-5 bg-dark hero-header mb-5">
-            <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">計算</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">計算</li>
-                    </ol>
-                </nav>
-            </div>
+    </div>
+    </nav>
+
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">計算</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">計算</li>
+                </ol>
+            </nav>
         </div>
+    </div>
     </div> <!-- Navbar & Hero End -->
 
 

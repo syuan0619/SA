@@ -61,11 +61,12 @@
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
+                        <a href="information.php" class="nav-item nav-link">個人資料</a>
+
                     </div>
                 </div>
                 <div>
                     <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
                     <?php } else { ?>
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
@@ -122,12 +123,6 @@
                                 </div>
                             </div>
 
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" name="確認密碼" placeholder="密碼">
-                                    <label for="確認密碼">確認密碼</label>
-                                </div>
-                            </div>
                             <div>
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="Phone" placeholder="密碼">

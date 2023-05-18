@@ -66,16 +66,21 @@ $end_date = $_POST['end_date'];
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
+                        <a href="information.php" class="nav-item nav-link">個人資料</a>
+
                     </div>
                 </div>
                 <div>
                     <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
+                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                        </li>
+
                     <?php } else { ?>
+
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                         </li>
@@ -121,7 +126,7 @@ $end_date = $_POST['end_date'];
             $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>";
+                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], " 公斤</td><td>", "</td></tr>";
             }
         } else {
         ?>
@@ -131,7 +136,26 @@ $end_date = $_POST['end_date'];
             </script>
         <?php
 
+
         } ?>
+        <form method="post" action="searchHis.php">
+            <input type="submit" name="compare" value="比較數據">
+        </form>
+        <?php
+        if (isset($_POST["compare"])) {
+            $link = mysqli_connect("localhost", "root", "", "sa");
+            $C = "select SUM(CRecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
+
+            $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
+            $result = mysqli_query($link, $sql);
+            $c = array();
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($c, $row['Crecord']);
+            }
+            rsort($c);
+            echo "$c", "以上為由多到少的碳排放數據";
+        }
+        ?> ?>
 
 
 

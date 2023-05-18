@@ -10,10 +10,8 @@ $Phone = $_POST['Phone'];
 if ($ID != null && $Password != null) {
     $link = mysqli_connect("localhost", "root", "", "sa");
     $sql  = "insert into account (ID, Password, Name, Phone, Email) values ('$ID', '$Password', '$Name', '$Phone','$Email')";
-?>
-    <?php
     if (mysqli_query($link, $sql)) {
-    ?>
+?>
         <script>
             alert("註冊成功!");
             location.href = "login.php";
