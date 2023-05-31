@@ -1,10 +1,9 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>count</title>
+    <title>Restoran - Bootstrap Restaurant Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -81,111 +80,101 @@
                 </div>
 
         </div>
+
         </nav>
 
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">計算</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">活動</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">計算</li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Team</li>
                     </ol>
                 </nav>
             </div>
         </div>
-    </div> <!-- Navbar & Hero End -->
+    </div>
+    <!-- Navbar & Hero End -->
 
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
+    <!-- Team Start -->
+    <div class="container-xxl pt-5 pb-3">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <form method="post" action="">
-                    <select class="form-select" name="kind">
-                        <option value="開車">開車(公里)</option>
-                        <option value="騎車">騎車(公里)</option>
-                        <option value="搭乘公車">公車(分鐘)</option>
-                        <option value="搭乘捷運">捷運(站)</option>
-                        <option value="水">水(度)</option>
-                        <option value="電">電(度)</option>
-                        <option value="瓦斯">瓦斯(度)</option>
-
-                    </select>
-                    <h1>請輸入數值</h1>
-                    <input type="number" name="calculate" required>
-                    <br>
-                    <br>
-                    <input class="btn btn-primary py-2 px-4" type="submit" name="計算" value="開始計算" required>
-                    <?php
-                    if (isset($_POST['calculate']) && isset($_POST['kind'])) {
-                        $calculate = $_POST['calculate'];
-                        $kind = $_POST['kind'];
-                        switch ($kind) {
-                            case "水":
-                                $result = $calculate * 0.0554;
-                                break;
-                            case "電":
-                                $result = $calculate * 0.509;
-                                break;
-                            case "瓦斯":
-                                $result = $calculate * 1.879;
-                                break;
-                            case "搭乘捷運":
-                                $result = $calculate * 0.0554;
-                                break;
-                            case "搭乘公車":
-                                $result = $calculate * 0.2075;
-                                break;
-                            case "開車":
-                                $result = $calculate * 0.412;
-                                break;
-                            case "騎車":
-                                $result = $calculate * 0.125;
-                                break;
-                        }
-                        echo "<h3> {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
-                    }
-                    ?>
-                </form>
-                <form method="post" action="insert_his.php">
-                    <input type="hidden" name="result" value="<?php echo $result; ?>">
-                    <input type="hidden" name="kind" value="<?php echo $kind; ?>">
-                    <input class="btn btn-primary py-2 px-4" type="submit" value="儲存結果" required>
-                </form>
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal"> 你有沒有空? 我們一起去! </h5>
+                <h1 class="mb-5"></h1>
             </div>
-        </div>
-    </div>
-
-    <!-- Contact End -->
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="img/活動1.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0">吃素21天挑戰</h5>
+                        <small>2023/7</small>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-primary mx-1" href="">刪除</a>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="img/活動2.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0">救救我的家-海洋生態保育講座</h5>
+                        <small>2023/7/18</small>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-primary mx-1" href="">刪除</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="img/活動3.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0">象山淨山</h5>
+                        <small>2023/9/25</small>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-primary mx-1" href="">刪除</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="img/活動4.jpg" alt="">
+                        </div>
+                        <h5 class="mb-0">一起去種樹!</h5>
+                        <small>2023/11/11</small>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-primary mx-1" href="">刪除</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <a href="addAct.php" class="btn btn-primary py-2 px-4">新增活動</a>
         </div>
     </div>
-    <!-- Footer End -->
+    </div>
+    </div>
+    <!-- Team End -->
+    <div class="col-lg-3 col-md-6">
+        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+        <div class="d-flex pt-2">
+            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
 
 
     <!-- Back to Top -->

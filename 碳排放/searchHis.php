@@ -138,26 +138,7 @@ $end_date = $_POST['end_date'];
 
 
         } ?>
-        <form method="post" action="searchHis.php">
-            <input type="submit" name="compare" value="比較數據">
-        </form>
-        <?php
-        if (isset($_POST["compare"])) {
-            $link = mysqli_connect("localhost", "root", "", "sa");
-            $C = "select SUM(CRecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
-
-            $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
-            $result = mysqli_query($link, $sql);
-            $c = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($c, $row['Crecord']);
-            }
-            rsort($c);
-            echo "$c", "以上為由多到少的碳排放數據";
-        }
-        ?> ?>
-
-
+      
 
 
 
