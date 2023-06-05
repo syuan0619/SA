@@ -1,9 +1,11 @@
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>活動</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -77,47 +79,46 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
+                        <a href="actUser.php" class="nav-item nav-link">活動</a>
+
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
 
+
+                        <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
+                    <li>
+                        <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                        <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                    </li>
+
+                <?php } else { ?>
+                    <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li>
-                            <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
-                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
-                        </li>
-
-                    <?php } else { ?>
-
-                        <li>
-                            <a href="information.php" class="nav-item nav-link">個人資料</a>
-                            <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
-
-                    <?php } ?>
-
-                </div>
-
+                <li>
+                    <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                    <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                </li>
         </div>
 
-        </nav>
+    <?php } ?>
 
-        <div class="container-xxl py-5 bg-dark hero-header mb-5">
-            <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">活動</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Team</li>
-                    </ol>
-                </nav>
-            </div>
+
+    </nav>
+
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">活動</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Team</li>
+                </ol>
+            </nav>
         </div>
+    </div>
     </div>
     <!-- Navbar & Hero End -->
 
@@ -130,180 +131,105 @@
                 <h1 class="mb-5"></h1>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item text-center rounded overflow-hidden">
-                        <div id="myObject1">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/活動1.jpg" alt="">
+                <?php
+                $link = mysqli_connect("localhost", "root", "", "sa");
+                $sql = "SELECT MAX(ID) AS maxId FROM event";
+                $result = mysqli_query($link, $sql);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $maxID = $row['maxId'];
+                }
+
+                for ($i = 0; $i <= $maxID; $i++) {
+                    $sql = "SELECT Name, Summery, DATE_FORMAT(Date, '%Y-%m-%d %H:%i') AS Date, Location, DATE_FORMAT(endDate, '%Y-%m-%d %H:%i') AS endDate FROM event WHERE ID=$i LIMIT 1";
+                    $result = mysqli_query($link, $sql);
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="team-item text-center rounded overflow-hidden">
+                                <div id="myObject<?php echo $i; ?>">
+                                    <div class="rounded-circle overflow-hidden m-4">
+                                        <img class="img-fluid" src="img/活動<?php echo $i; ?>.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <div id="myPopup<?php echo $i; ?>" class="popup">
+                                    <table>
+                                        <?php
+                                        echo "活動簡介：" . $row['Summery'] . "<br> 活動時間：" . $row['Date'] . "<br>活動地點：" . $row['Location'] . "<br>報名截止時間：" . $row['endDate'] . "<br>";
+                                        ?>
+                                    </table>
+                                </div>
+                                <script>
+                                    var object<?php echo $i; ?> = document.getElementById("myObject<?php echo $i; ?>");
+                                    var popup<?php echo $i; ?> = document.getElementById("myPopup<?php echo $i; ?>");
+
+                                    object<?php echo $i; ?>.addEventListener("mouseover", function() {
+                                        popup<?php echo $i; ?>.style.display = "block";
+                                    });
+
+                                    object<?php echo $i; ?>.addEventListener("mouseout", function() {
+                                        popup<?php echo $i; ?>.style.display = "none";
+                                    });
+                                </script>
+
+                                <h5 class="mb-0"><?php echo $row['Name']; ?></h5>
+                                <small><?php echo $row['Date']; ?></small>
+
+                                <form action="signup.php" method="post">
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <button class="btn btn-primary mx-1" type="submit">報名</button>
+                                        <input type="hidden" name="actName" value="<?php echo $row['Name']; ?>">
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div id="myPopup1" class="popup">
-                            活動介紹：<br>
-                            活動時間：<br>
-                            報名截止時間：
-                        </div>
-                        <script>
-                            var object1 = document.getElementById("myObject1");
-                            var popup1 = document.getElementById("myPopup1");
+                <?php
+                    }
+                }
+                mysqli_close($link);
+                ?>
+            </div>
 
-                            object1.addEventListener("mouseover", function() {
-                                popup1.style.display = "block";
-                            });
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
 
-                            object1.addEventListener("mouseout", function() {
-                                popup1.style.display = "none";
-                            });
-                        </script>
-                        <h5 class="mb-0">吃素21天挑戰</h5>
-                        <small>2023/7</small>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a class="btn btn-primary mx-1" href="signup.php">報名</a>
+        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5">
+
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item text-center rounded overflow-hidden">
-                        <div id="myObject2">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/活動2.jpg" alt="">
-                            </div>
-                        </div>
-                        <div id="myPopup2" class="popup">
-                            活動介紹：<br>
-                            活動時間：<br>
-                            報名截止時間：
-                        </div>
-                        <script>
-                            var object2 = document.getElementById("myObject2");
-                            var popup2 = document.getElementById("myPopup2");
-
-                            object2.addEventListener("mouseover", function() {
-                                popup2.style.display = "block";
-                            });
-
-                            object2.addEventListener("mouseout", function() {
-                                popup2.style.display = "none";
-                            });
-                        </script>
-                        <h5 class="mb-0">救救我的家-海洋生態保育講座</h5>
-                        <small>2023/7/18</small>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a class="btn btn-primary mx-1" href="報名.html">報名</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item text-center rounded overflow-hidden">
-                        <div id="myObject3">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/活動3.jpg" alt="">
-                            </div>
-                        </div>
-                        <div id="myPopup3" class="popup">
-                            活動介紹：<br>
-                            活動時間：<br>
-                            報名截止時間：
-                        </div>
-                        <script>
-                            var object3 = document.getElementById("myObject3");
-                            var popup3 = document.getElementById("myPopup3");
-
-                            object3.addEventListener("mouseover", function() {
-                                popup3.style.display = "block";
-                            });
-
-                            object3.addEventListener("mouseout", function() {
-                                popup3.style.display = "none";
-                            });
-                        </script>
-                        <h5 class="mb-0">象山淨山</h5>
-                        <small>2023/9/25</small>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a class="btn btn-primary mx-1" href="報名.html">報名</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item text-center rounded overflow-hidden">
-                        <div id="myObject4">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/活動4.jpg" alt="">
-                            </div>
-                        </div>
-                        <div id="myPopup4" class="popup">
-                            活動介紹：<br>
-                            活動時間：<br>
-                            報名截止時間：
-                        </div>
-                        <script>
-                            var object4 = document.getElementById("myObject4");
-                            var popup4 = document.getElementById("myPopup4");
-
-                            object4.addEventListener("mouseover", function() {
-                                popup4.style.display = "block";
-                            });
-
-                            object4.addEventListener("mouseout", function() {
-                                popup4.style.display = "none";
-                            });
-                        </script>
-                        <h5 class="mb-0">一起去種樹!</h5>
-                        <small>2023/11/11</small>
-                        <div class="d-flex justify-content-center mt-3">
-                            <a class="btn btn-primary mx-1" href="報名.html">報名</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
-    <!-- Team End -->
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
 </body>
 
 </html>

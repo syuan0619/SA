@@ -48,7 +48,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="index.php" class="navbar-brand p-0">
                     <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -58,31 +58,33 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
+                        <a href="actUser.php" class="nav-item nav-link">活動</a>
+
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
 
+
+                        <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
-                </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li>
-                            <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
-                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
-                        </li>
+                            <li>
+                                <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                                <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                            </li>
 
-                    <?php } else { ?>
-
-                        <li>
+                        <?php } else { ?>
                             <a href="information.php" class="nav-item nav-link">個人資料</a>
-                            <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
-
-                    <?php } ?>
-
-
+                    </div>
+                    <li>
+                        <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                        <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                    </li>
                 </div>
+
+                <?php } ?>
+
+                
+            </nav>
 
         </div>
 
@@ -98,7 +100,7 @@
                     <p class="text-white animated slideInLeft mb-4 pb-2">
                         人類只有一個可生息的村莊—地球，保護環境是每個地球村民的責任。全球暖化、溫室效應已不再是陌生的名詞，特別是隨著各地氣候現象驟變，人們更加關注減少碳足跡的議題，從現在開始，請讓我們用行動減少碳排放！
                     </p>
-                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">了解碳排放 →</a>
+                    <a href="actUser.php" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">報名活動 →</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                     <img class="img-fluid" src="img/Earth.png" alt="">

@@ -112,9 +112,9 @@ $end_date = $_POST['end_date'];
             <td>碳排放紀錄</td>
         </tr>
         <?php
-       
+
         $aaa = array();
-      
+
 
         if ($ID != null && $Name != null) {
             $link = mysqli_connect("localhost", "root", "", "sa");
@@ -123,12 +123,11 @@ $end_date = $_POST['end_date'];
             $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>"; 
-                array_push($aaa,$row['Crecord']);
-            }   
-            
+                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>";
+                array_push($aaa, $row['Crecord']);
+            }
         } else {
-            ?>
+        ?>
             <script>
                 alert("請先登入!");
                 location.href = "login.php";
@@ -136,43 +135,38 @@ $end_date = $_POST['end_date'];
         <?php
 
         } ?>
-<<<<<<< HEAD
-      
-=======
-
-        <div class="container text-center my-3 pt-3 pb-3">
-        <?php
-        $a = $aaa[0];
-        $b = $aaa[1];
-        $c = $b/$a;
-        echo "您的碳排放量是上一次的",$c,"倍";
-        ?>
-        </div>
-       
-
->>>>>>> master
+       <div class="container text-center my-3 pt-3 pb-3">
+            <?php
+            $a = $aaa[0];
+            $b = $aaa[1];
+            $c = $b / $a;
+            echo "您的碳排放量是上一次的", $c, "倍";
+            ?>
+            </div>
 
 
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        </div>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            </div>
+
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/wow/wow.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/counterup/counterup.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+            <script src="lib/tempusdominus/js/moment.min.js"></script>
+            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
 </body>
 
 </html>

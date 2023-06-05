@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,133 +58,144 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="history.php" class="nav-item nav-link">Menu</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="booking.html" class="dropdown-item active">Booking</a>
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="index.php" class="nav-item nav-link">首頁</a>
+                        <a href="actUser.php" class="nav-item nav-link">活動</a>
+
+                        <a href="signin.php" class="nav-item nav-link">簽到</a>
+                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                        <a href="count.php" class="nav-item nav-link">計算</a>
+
+
+                        <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
-                    <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
-                </div>
-            </nav>
+                    <li>
+                        <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                        <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                    </li>
 
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">新增活動</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
-                        </ol>
-                    </nav>
+                <?php } else { ?>
+                    <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
-            </div>
+                <li>
+                    <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                    <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                </li>
         </div>
-        <!-- Navbar & Hero End -->
+
+    <?php } ?>
 
 
-        <!-- Reservation Start -->
-        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-0">
-            </div>
-            <div class="bg-dark d-flex align-items-center">
-                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                    <h1 class="text-white mb-4">新增活動</h1>
-                    <form>
-                        <div class="row g-3">
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="eventName">名稱</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
-                                    <label for="datetime">開始時間</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
-                                    <label for="datetime">結束時間</label>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="location">地點</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Special Request" id="message" ></textarea>
-                                    <label for="participantLimit">簡介</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="participantLimit">人數下限</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="participantMaxLimit">人數上限</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
-                                    <label for="datetime">報名截止時間</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="contactPerson">聯絡人</label>
-                                </div>
-                            </div>
+    </nav>
+
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">新增活動</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    </div>
+    <!-- Navbar & Hero End -->
 
 
-                            <div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="eventName" placeholder="Your Name">
-                                    <label for="message">聯絡電話</label>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="contactEmail">聯絡信箱</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                    <label for="message">補充事項
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
+    <!-- Reservation Start -->
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
+        </div>
+        <div class="bg-dark d-flex align-items-center">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">新增活動</h1>
+                <form>
+                    <div class="row g-3">
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="eventName">名稱</label>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">開始時間</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">結束時間</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="location">地點</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" id="message"></textarea>
+                                <label for="participantLimit">簡介</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="participantLimit">人數下限</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="participantMaxLimit">人數上限</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">報名截止時間</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="contactPerson">聯絡人</label>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="message">聯絡電話</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                <label for="contactEmail">聯絡信箱</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                <label for="message">補充事項
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

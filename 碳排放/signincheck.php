@@ -19,9 +19,9 @@ if ($ID != null) {
 
     if (isset($_GET['weekDay'])) {
         $link = mysqli_connect("localhost", "root", "", "sa");
-        $sql1 = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
+        $sql = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
 
-        $result = mysqli_query($link, $sql1);
+        $result = mysqli_query($link, $sql);
 
         if (mysqli_num_rows($result) != 0) {
 
