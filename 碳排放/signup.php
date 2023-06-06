@@ -1,10 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>count</title>
+    <title>報名</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -73,7 +74,9 @@
                     <?php } else { ?>
 
                         <li>
-                            <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                            <a class="btn btn-primary py-2 px-4">
+                                <?php echo $_SESSION["Name"] ?> , 您好
+                            </a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                         </li>
 
@@ -81,110 +84,103 @@
                 </div>
 
         </div>
+
         </nav>
 
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">計算</h1>
+                <h1 class="display-3 text-white mb-3 animated slideInDown">報名</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">計算</li>
+                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
                     </ol>
                 </nav>
             </div>
         </div>
-    </div> <!-- Navbar & Hero End -->
+    </div>
+    <!-- Navbar & Hero End -->
 
 
-    <!-- Contact Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <form method="post" action="">
-                    <select class="form-select" name="kind">
-                        <option value="開車">開車(公里)</option>
-                        <option value="騎車">騎車(公里)</option>
-                        <option value="搭乘公車">公車(分鐘)</option>
-                        <option value="搭乘捷運">捷運(站)</option>
-                        <option value="水">水(度)</option>
-                        <option value="電">電(度)</option>
-                        <option value="瓦斯">瓦斯(度)</option>
+    <!-- Reservation Start -->
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
+        </div>
+        <div class=" bg-dark d-flex align-items-center">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">我要報名</h1>
+                <h1 class="text-white mb-4"><?php echo $_POST["actName"]; ?></h1>
+                <form action="actCheck.php" method="post">
+                    <div class="row g-3">
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" require>
+                                <label for="name">姓名</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email">
+                                <label for="email">電子信箱</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control datetimepicker-input" name="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" require />
+                                <label for="datetime">連絡電話</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <select class="form-select" name="select1">
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="3"> 4 </option>
+                                    <option value="3"> 5 </option>
+                                </select>
+                                <label for="select1">人數</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" name="message" style="height: 100px"></textarea>
+                                <label for="message">特殊需求(吃素、身障人士......)</label>
+                            </div>
+                        </div>
 
-                    </select>
-                    <h1>請輸入數值</h1>
-                    <input type="number" name="calculate" required>
-                    <br>
-                    <br>
-                    <input class="btn btn-primary py-2 px-4" type="submit" name="計算" value="開始計算" required>
-                    <?php
-                    if (isset($_POST['calculate']) && isset($_POST['kind'])) {
-                        $calculate = $_POST['calculate'];
-                        $kind = $_POST['kind'];
-                        switch ($kind) {
-                            case "水":
-                                $result = $calculate * 0.0554;
-                                break;
-                            case "電":
-                                $result = $calculate * 0.509;
-                                break;
-                            case "瓦斯":
-                                $result = $calculate * 1.879;
-                                break;
-                            case "搭乘捷運":
-                                $result = $calculate * 0.0554;
-                                break;
-                            case "搭乘公車":
-                                $result = $calculate * 0.2075;
-                                break;
-                            case "開車":
-                                $result = $calculate * 0.412;
-                                break;
-                            case "騎車":
-                                $result = $calculate * 0.125;
-                                break;
-                        }
-                        echo "<h3> {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
-                    }
-                    ?>
-                </form>
-                <form method="post" action="insert_his.php">
-                    <input type="hidden" name="result" value="<?php echo $result; ?>">
-                    <input type="hidden" name="kind" value="<?php echo $kind; ?>">
-                    <input class="btn btn-primary py-2 px-4" type="submit" value="儲存結果" required>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
+                            <input type="hidden" name="actName" value="<?php echo $_POST["actName"]; ?>">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    </div>
 
-    <!-- Contact End -->
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="ratio ratio-16x9">
+                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always" allow="autoplay"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Reservation Start -->
+
+
+    <!-- Footer Start -->
     <!-- Footer End -->
 
 

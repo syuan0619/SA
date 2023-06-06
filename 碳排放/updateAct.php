@@ -97,19 +97,95 @@
     </div>
     </nav>
 
-    <div class="container-xxl py-5 bg-white hero-header mb-5">
-        <div class="container my-5 py-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-3 text-white animated slideInLeft">用行動護衛家園，<br>用熱血澆灌地球。</h1>
-                    <p class="text-white animated slideInLeft mb-4 pb-2">
-                        人類只有一個可生息的村莊—地球，保護環境是每個地球村民的責任。全球暖化、溫室效應已不再是陌生的名詞，特別是隨著各地氣候現象驟變，人們更加關注減少碳足跡的議題，從現在開始，請讓我們用行動減少碳排放！
-                    </p>
-                    <a href="actUser.php" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">報名活動 →</a>
-                </div>
-                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                    <img class="img-fluid" src="img/Earth.png" alt="">
-                </div>
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
+        </div>
+        <div class="bg-dark d-flex align-items-center">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">新增活動</h1>
+                <form>
+                    <div class="row g-3">
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="eventName">名稱</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">開始時間</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">結束時間</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="location">地點</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" id="message"></textarea>
+                                <label for="participantLimit">簡介</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="participantLimit">人數下限</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="participantMaxLimit">人數上限</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" id="datetime" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">報名截止時間</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="contactPerson">聯絡人</label>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="eventName" placeholder="Your Name">
+                                <label for="message">聯絡電話</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                <label for="contactEmail">聯絡信箱</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                <label for="message">補充事項
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

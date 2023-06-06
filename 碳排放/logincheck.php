@@ -10,12 +10,13 @@ $row = mysqli_fetch_array($rs);
 if (isset($row)) {
     $_SESSION["ID"] = $row["ID"];
     $_SESSION["Name"] = $row["Name"];
+    $_SESSION["Level"] = $row["level"];
     header("location:index.php");
 } else {
 ?>
     <script>
         alert("密碼錯誤!");
-       location.href = "login.php";
+        location.href = "login.php";
     </script>
 <?php
 

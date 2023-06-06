@@ -5,26 +5,27 @@ date_default_timezone_set('Asia/Taipei');
 $date = date('Y-m-d');
 $today = date('N');
 $weekDay = $_GET['weekDay'];
-if ($weekDay != "$today") {
-?>
-    <script>
-        alert("簽到失敗!");
-        location.href = "index.php";
-    </script>
-    <?php
-
-}
 
 if ($ID != null) {
+    if ($weekDay != "$today") {
+?>
+        <script>
+            alert("簽到失敗!");
+            location.href = "index.php";
+        </script>
+        <?php
+
+    }
+
     if (isset($_GET['weekDay'])) {
         $link = mysqli_connect("localhost", "root", "", "sa");
-        $sql1 = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
+        $sql = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
 
-        $result = mysqli_query($link, $sql1);
+        $result = mysqli_query($link, $sql);
 
         if (mysqli_num_rows($result) != 0) {
 
-    ?>
+        ?>
             <script>
                 alert("簽到失敗!");
                 location.href = "index.php";
@@ -32,7 +33,7 @@ if ($ID != null) {
             <?php
         } else {
 
-            $sql  = "insert INTO signin (ID, Date, weekDay) values ('$ID', '$date', '$weekDay')";
+            $sql  = "insert INTO signin (ID, Date) values ('$ID', '$date')";
             if (mysqli_query($link, $sql)) {
 
             ?>

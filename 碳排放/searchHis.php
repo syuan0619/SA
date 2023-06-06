@@ -13,7 +13,7 @@ $end_date = $_POST['end_date'];
 <head>
 
     <meta charset="utf-8">
-    <title>歷史紀錄</title>
+    <title>登入</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -66,21 +66,16 @@ $end_date = $_POST['end_date'];
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.php" class="nav-item nav-link">首頁</a>
+                        <a href="login.php" class="nav-item nav-link">登入</a>
                         <a href="signin.php" class="nav-item nav-link">簽到</a>
                         <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
                         <a href="count.php" class="nav-item nav-link">計算</a>
-                        <a href="information.php" class="nav-item nav-link">個人資料</a>
-
                     </div>
                 </div>
                 <div>
                     <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
-                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
-                        </li>
-
+                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
                     <?php } else { ?>
-
                         <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                             <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                         </li>
@@ -118,15 +113,18 @@ $end_date = $_POST['end_date'];
         </tr>
         <?php
 
-
+        $aaa = array();
 
 
         if ($ID != null && $Name != null) {
             $link = mysqli_connect("localhost", "root", "", "sa");
+            $C = "select SUM(CRecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
+
             $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], " 公斤</td><td>", "</td></tr>";
+                echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>";
+                array_push($aaa, $row['Crecord']);
             }
         } else {
         ?>
@@ -136,50 +134,39 @@ $end_date = $_POST['end_date'];
             </script>
         <?php
 
-
         } ?>
-        <form method="post" action="searchHis.php">
-            <input type="submit" name="compare" value="比較數據">
-        </form>
-        <?php
-        if (isset($_POST["compare"])) {
-            $link = mysqli_connect("localhost", "root", "", "sa");
-            $C = "select SUM(CRecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
-
-            $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
-            $result = mysqli_query($link, $sql);
-            $c = array();
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($c, $row['Crecord']);
-            }
-            rsort($c);
-            echo "$c", "以上為由多到少的碳排放數據";
-        }
-        ?> ?>
+       <div class="container text-center my-3 pt-3 pb-3">
+            <?php
+            $a = $aaa[0];
+            $b = $aaa[1];
+            $c = $b / $a;
+            echo "您的碳排放量是上一次的", $c, "倍";
+            ?>
+            </div>
 
 
 
 
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        </div>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            </div>
 
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/wow/wow.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/counterup/counterup.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+            <script src="lib/tempusdominus/js/moment.min.js"></script>
+            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
 </body>
 
 </html>
