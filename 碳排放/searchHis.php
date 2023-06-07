@@ -114,6 +114,12 @@ $end_date = $_POST['end_date'];
         <?php
 
         $aaa = array();
+        $bbb = array();
+
+        $timestamp = strtotime("$start_date");
+        $aa = date ("n",$timestamp);
+        $timestamp = strtotime("$end_date");
+        $bb = date ("n",$timestamp);
 
 
         if ($ID != null && $Name != null) {
@@ -124,7 +130,14 @@ $end_date = $_POST['end_date'];
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>";
-                array_push($aaa, $row['Crecord']);
+                $timestamp = strtotime($row["Date"]);
+                if (date("n",$timestamp) == "$aa"){
+                    array_push($aaa, $row['Crecord']);
+                };
+                if (date("n",$timestamp) == "$bb"){
+                    array_push($bbb, $row['Crecord']);
+                };
+                echo "<br>";
             }
         } else {
         ?>
@@ -135,12 +148,20 @@ $end_date = $_POST['end_date'];
         <?php
 
         } ?>
-       <div class="container text-center my-3 pt-3 pb-3">
+       <div class="container text-center my-1 pt-1 pb-1">
             <?php
-            $a = $aaa[0];
-            $b = $aaa[1];
-            $c = $b / $a;
-            echo "您的碳排放量是上一次的", $c, "倍";
+            
+            $timestamp = strtotime("$start_date");
+            echo date ("n",$timestamp),"月您的碳排放量為:",array_sum($aaa);
+            echo "<br>";
+            
+            $timestamp = strtotime("$end_date");
+            echo date ("n",$timestamp),"月您的碳排放量為:",array_sum($bbb);
+
+            echo "<br>";
+            $c = array_sum($aaa)/array_sum($bbb) ;
+            $c = number_format($c,2);
+            echo "您的碳排放量差距了",$c,"倍" ;
             ?>
             </div>
 
