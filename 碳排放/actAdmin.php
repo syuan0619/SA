@@ -78,21 +78,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="actUser.php" class="nav-item nav-link">活動</a>
+                        <?php if ($_SESSION['Level'] == 1) { ?>
+                            <li>
+                                <a href="index.php" class="btn btn-primary py-2 px-4">首頁</a>
+                                <a href="actAdmin.php" class="btn btn-primary py-2 px-4">活動管理</a>
+                                <a class="btn btn-primary py-2 px-4">管理者 , 您好</a>
+                                <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                            </li>
+                        <?php } else { ?>
+                            <a href="index.php" class="nav-item nav-link">首頁</a>
+                            <a href="actUser.php" class="nav-item nav-link">活動</a>
+                            <a href="signin.php" class="nav-item nav-link">簽到</a>
+                            <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                            <a href="count.php" class="nav-item nav-link">計算</a>
 
-                        <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
-
-
-                        <?php if (empty($_SESSION["ID"])) { ?>
+                            <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
                     <li>
                         <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
                         <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
                     </li>
-
                 <?php } else { ?>
                     <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
@@ -100,9 +105,10 @@
                     <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                     <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                 </li>
+        <?php }
+                        } ?>
         </div>
-
-    <?php } ?>
+    </div>
 
 
     </nav>
@@ -127,8 +133,10 @@
     <div class="container-xxl pt-5 pb-3">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="section-title ff-secondary text-center text-primary fw-normal"> 你有沒有空? 我們一起去! </h5>
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">管理活動</h5>
                 <h1 class="mb-5"></h1>
+                <a href="addAct.php" class="btn btn-primary py-2 px-4">新增活動</a>
+
             </div>
             <div class="row g-4">
                 <?php
@@ -150,7 +158,7 @@
                             <div class="team-item text-center rounded overflow-hidden">
                                 <div id="myObject<?php echo $i; ?>">
                                     <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/活動<?php echo $i; ?>.jpg" alt="">
+                                        <img class="img-fluid" src="img1/活動<?php echo $i; ?>.jpg" alt="">
                                     </div>
                                 </div>
 
@@ -179,12 +187,14 @@
 
                                 <form action="dbaction.php" method="post">
                                     <div class="d-flex justify-content-center mt-3">
-                                        <button class="btn btn-primary mx-1" type="submit">刪除</button>
-                                        <input type="hidden" name="dbaction" value="delete">
+                                        <div>
+                                            <button class="btn btn-primary mx-1" type="submit">刪除</button>
+                                            <input type="hidden" name="dbaction" value="delete">
+                                        </div>
+                                        <input type="hidden" name="ID" value="<? echo $i ?>">
                                         <button class="btn btn-primary mx-1" type="submit">修改</button>
                                         <input type="hidden" name="dbaction" value="update">
                                     </div>
-                                   
                                 </form>
                             </div>
                         </div>

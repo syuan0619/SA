@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-06-05 20:43:26
+-- 產生時間： 2023-06-08 04:58:19
 -- 伺服器版本： 10.4.28-MariaDB
--- PHP 版本： 8.2.4
+-- PHP 版本： 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,21 +57,26 @@ INSERT INTO `account` (`ID`, `Name`, `Password`, `phone`, `Email`, `level`) VALU
 --
 
 CREATE TABLE `event` (
+  `ID` int(10) NOT NULL,
   `Name` varchar(20) NOT NULL,
   `Summery` varchar(20) NOT NULL,
   `Date` datetime(6) NOT NULL,
-  `endDate` datetime(6) NOT NULL,
+  `startdate` date NOT NULL,
+  `endDate` date NOT NULL,
   `Location` varchar(50) NOT NULL,
-  `ID` int(10) NOT NULL
+  `Organiser` varchar(10) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Phone` varchar(10) NOT NULL,
+  `Note` varchar(20) NOT NULL,
+  `people` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 傾印資料表的資料 `event`
 --
 
-INSERT INTO `event` (`Name`, `Summery`, `Date`, `endDate`, `Location`, `ID`) VALUES
-('救救我的家-海洋保護講座', '海洋保育及環境保護', '2023-07-17 08:30:00.000000', '2023-07-16 18:30:00.000000', '', 1),
-('吃素21天挑戰', '環保從體內開始!', '2023-07-01 08:00:00.000000', '2023-07-21 08:00:00.000000', '自家', 2);
+INSERT INTO `event` (`ID`, `Name`, `Summery`, `Date`, `startdate`, `endDate`, `Location`, `Organiser`, `Email`, `Phone`, `Note`, `people`) VALUES
+(1, '海洋保育講座', '了解更多海洋保育相關知識', '2023-07-07 10:00:00.000000', '2023-05-29', '2023-07-05', '輔大國璽樓11樓', '黃傑瑞', 'maccc9114@gmail.com', '0972328166', '無', 50);
 
 -- --------------------------------------------------------
 
@@ -113,35 +118,17 @@ INSERT INTO `history` (`ID`, `Name`, `Date`, `kind`, `Crecord`) VALUES
 
 CREATE TABLE `points` (
   `ID` varchar(20) NOT NULL,
-  `Points` int(10) NOT NULL,
-  `RecordDate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `signin`
---
-
-CREATE TABLE `signin` (
-  `ID` varchar(20) NOT NULL,
-  `Date` date NOT NULL
+  `Points` int(100) NOT NULL,
+  `RecordDate` date NOT NULL,
+  `Reason` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 傾印資料表的資料 `signin`
+-- 傾印資料表的資料 `points`
 --
 
-INSERT INTO `signin` (`ID`, `Date`) VALUES
-('nmsl8787', '2023-05-19'),
-('6543', '2023-05-19'),
-('ssss', '2023-05-19'),
-('6543', '2023-05-21'),
-('6543', '2023-05-26'),
-('6543', '2023-05-31'),
-('abc', '2023-05-31'),
-('nmsl8787', '2023-05-31'),
-('nmsl8787', '2023-06-06');
+INSERT INTO `points` (`ID`, `Points`, `RecordDate`, `Reason`) VALUES
+('abc', 1, '2023-06-08', '簽到');
 
 -- --------------------------------------------------------
 
@@ -151,19 +138,12 @@ INSERT INTO `signin` (`ID`, `Date`) VALUES
 
 CREATE TABLE `signup` (
   `Name` varchar(20) NOT NULL,
-  `People` int(3) NOT NULL,
-  `requirement` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
   `actName` varchar(20) NOT NULL,
-  `Phone` varchar(10) NOT NULL
+  `Phone` varchar(20) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `requirement` varchar(50) NOT NULL,
+  `People` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- 傾印資料表的資料 `signup`
---
-
-INSERT INTO `signup` (`Name`, `People`, `requirement`, `Email`, `actName`, `Phone`) VALUES
-('Syuan', 1111, '', '10730163@ms2.hssh.tp.edu.tw', '吃素21天挑戰', '1');
 
 --
 -- 已傾印資料表的索引
@@ -196,7 +176,7 @@ ALTER TABLE `history`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `event`
 --
 ALTER TABLE `event`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 已傾印資料表的限制式
