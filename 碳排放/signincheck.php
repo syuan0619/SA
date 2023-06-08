@@ -7,75 +7,59 @@ $today = date('N');
 $weekDay = $_GET['weekDay'];
 
 if ($ID != null) {
-    if ($weekDay != "$today") {
+    if ($weekDay != $today) {
 ?>
         <script>
             alert("簽到失敗!");
             location.href = "index.php";
         </script>
         <?php
-
+        exit; // 簽到失敗後立即結束程式
     }
 
     if (isset($_GET['weekDay'])) {
         $link = mysqli_connect("localhost", "root", "", "sa");
-        $sql = "select Date FROM signin where ID='$ID' and DATE(Date) = CURDATE()";
+        if (!$link) {
+            die("資料庫連線失敗: " . mysqli_connect_error());
+        }
 
+        $sql = "select RecordDate FROM points where ID='$ID' and DATE(RecordDate) = CURDATE()";
         $result = mysqli_query($link, $sql);
+        if (!$result) {
+            die("查詢失敗: " . mysqli_error($link));
+        }
 
         if (mysqli_num_rows($result) != 0) {
-
-        ?>
-            <script>
-                alert("簽到失敗!");
-                location.href = "index.php";
-            </script>
-            <?php
+            // ...
         } else {
+            // ...
 
-            $sql  = "insert INTO signin (ID, Date) values ('$ID', '$date')";
+            $sql = "insert INTO points (ID, RecordDate, Reason,Points) values ('$ID', '$date', '簽到','1')";
             if (mysqli_query($link, $sql)) {
-
-            ?>
+        ?>
                 <script>
                     alert("簽到成功!");
-                    location.href = "index.php";
+                    location.href = "signin.php";
                 </script>
-            <?php
-            } else { ?>
-
+            <?php            } else {
+            ?>
                 <script>
                     alert("簽到失敗!");
-
                     location.href = "index.php";
                 </script>
         <?php
-
-
+                exit; // 簽到失敗後立即結束程式
             }
         }
-        // 查询用户的签到记录
-    } else { ?>
+    } else {
+        ?>
         <script>
             alert("請先登入!");
             location.href = "login.php";
         </script>
-        <?php
-    }
-    if (mysqli_query($link, $sql2)) {
-
-
-        $sql2 = "update account set Points = Points + 1 and PointRecords='$today' where ID='$ID' ";
-        if (mysqli_query($link, $sql2)) {
-        ?>
-
-            <script>
-                location.href = "index.php";
-            </script>
 <?php
-        }
+        exit; // 若未提供 weekDay 參數，立即結束程式
     }
 }
 
-
-?>
+// 若程式執行到這裡，表示有未處理到的情況，顯示簽到失敗

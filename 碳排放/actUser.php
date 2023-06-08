@@ -78,31 +78,44 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="actUser.php" class="nav-item nav-link">活動</a>
+                        <?php if ($_SESSION['Level'] == 1) { ?>
+                            <li>
+                                <a href="index.php" class="btn btn-primary py-2 px-4">首頁</a>
+                                <a href="actAdmin.php" class="btn btn-primary py-2 px-4">活動管理</a>
+                                <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                            </li>
+                        <?php } else { ?>
 
-                        <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
-
-
-                        <?php if (empty($_SESSION["ID"])) { ?>
+                            <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
                     <li>
                         <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
                         <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
                     </li>
-
                 <?php } else { ?>
+                    <a href="index.php" class="nav-item nav-link">首頁</a>
+                    <a href="actUser.php" class="nav-item nav-link">活動</a>
+                    <a href="signin.php" class="nav-item nav-link">簽到</a>
+                    <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                    <a href="count.php" class="nav-item nav-link">計算</a>
                     <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
                 <li>
                     <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
                     <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                 </li>
+        <?php }
+                        } ?>
         </div>
+    </div>
 
-    <?php } ?>
+
+    </nav>
+
+    </div>
+
+
+    </div>
 
 
     </nav>
@@ -150,7 +163,7 @@
                             <div class="team-item text-center rounded overflow-hidden">
                                 <div id="myObject<?php echo $i; ?>">
                                     <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img/活動<?php echo $i; ?>.jpg" alt="">
+                                        <img class="img-fluid" src="img1/活動<?php echo $i; ?>.jpg" alt="">
                                     </div>
                                 </div>
 
@@ -202,9 +215,9 @@
 
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(02)2905-2000</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>053792@mail.fju.edu.tw</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>

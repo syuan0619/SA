@@ -56,46 +56,55 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <?php if (empty($_SESSION["ID"])) { ?>
-                            <a href="login.php" class="nav-item nav-link">登入</a>
-                            <a href="insert.php" class="nav-item nav-link">註冊</a>
-
+                        <?php if ($_SESSION['Level'] == 1) { ?>
+                            <li>
+                                <a href="index.php" class="btn btn-primary py-2 px-4">首頁</a>
+                                <a href="actAdmin.php" class="btn btn-primary py-2 px-4">活動管理</a>
+                                <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                            </li>
                         <?php } else { ?>
 
-
-                        <?php } ?>
-                        <a href="information.php" class="nav-item nav-link">個人資料</a>
-                        <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
+                            <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
+                    <li>
+                        <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                        <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                    </li>
+                <?php } else { ?>
+                    <a href="index.php" class="nav-item nav-link">首頁</a>
+                    <a href="actUser.php" class="nav-item nav-link">活動</a>
+                    <a href="signin.php" class="nav-item nav-link">簽到</a>
+                    <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                    <a href="count.php" class="nav-item nav-link">計算</a>
+                    <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a></li>
-                    <?php } else { ?>
-                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
-
-                    <?php } ?>
-
-                </div>
-
+                <li>
+                    <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                    <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                </li>
+        <?php }
+                        } ?>
         </div>
-        </nav>
-        <div class="container-xxl py-5 bg-dark hero-header mb-5">
-            <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">個人資料</h1>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">個人資料</li>
-                    </ol>
-                </nav>
-            </div>
+    </div>
+
+
+    </nav>
+
+    </div>
+
+
+    </div>
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">個人資料</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">個人資料</li>
+                </ol>
+            </nav>
         </div>
+    </div>
     </div>
     <!-- Contact Start -->
     <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
@@ -133,6 +142,29 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+    <!--footer start-->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(02)2905-2000</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>053792@mail.fju.edu.tw</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

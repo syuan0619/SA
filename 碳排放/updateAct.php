@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>活動</title>
+    <title>碳排放計算系統</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -32,27 +32,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        .popup {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            /* 自定义样式 */
-            width: 200px;
-            color: #333;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 鼠标悬停样式 */
-        .popup:hover {
-            background-color: #eaeaea;
-        }
-    </style>
 </head>
 
 <body>
@@ -69,7 +48,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="index.php" class="navbar-brand p-0">
                     <h1 class="text-primary m-0"></i>碳排放計算系統</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -82,8 +61,6 @@
                             <li>
                                 <a href="index.php" class="btn btn-primary py-2 px-4">首頁</a>
                                 <a href="actAdmin.php" class="btn btn-primary py-2 px-4">活動管理</a>
-                                <a class="btn btn-primary py-2 px-4">管理者 , 您好</a>
-                                <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
                             </li>
                         <?php } else { ?>
                             <a href="index.php" class="nav-item nav-link">首頁</a>
@@ -111,113 +88,99 @@
     </div>
 
 
+
     </nav>
 
-    <div class="container-xxl py-5 bg-dark hero-header mb-5">
-        <div class="container text-center my-5 pt-5 pb-4">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">活動</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center text-uppercase">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">Activity</li>
-                </ol>
-            </nav>
+    </div>
+
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
         </div>
-    </div>
-    </div>
-    <!-- Navbar & Hero End -->
+        <div class="bg-dark d-flex align-items-center">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h1 class="text-white mb-4">修改活動 </h1>
+                <h1 class="text-white mb-4"><?php echo $_POST["actName"]; ?></h1>
+                <form action="dbaction.php" method="post">
+                    <div class="row g-3">
+                        <input type=hidden name="dbaction" value="update">
+                        <input type=hidden name="Name" value="<?php echo $_POST["actName"]; ?>">
 
-
-    <!-- Team Start -->
-    <div class="container-xxl pt-5 pb-3">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h5 class="section-title ff-secondary text-center text-primary fw-normal">管理活動</h5>
-                <h1 class="mb-5"></h1>
-                <a href="addAct.php" class="btn btn-primary py-2 px-4">新增活動</a>
-
-            </div>
-            <div class="row g-4">
-                <?php
-                $link = mysqli_connect("localhost", "root", "", "sa");
-                $sql = "SELECT MAX(ID) AS maxId, Name FROM event";
-                $result = mysqli_query($link, $sql);
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $maxID = $row['maxId'];
-                    $Name = $row['Name'];
-                }
-
-                for ($i = 0; $i <= $maxID; $i++) {
-                    $sql = "SELECT Name , Summery, DATE_FORMAT(Date, '%Y-%m-%d %H:%i') AS Date, Location, DATE_FORMAT(endDate, '%Y-%m-%d %H:%i') AS endDate FROM event WHERE ID=$i LIMIT 1";
-                    $result = mysqli_query($link, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                ?>
-
-                        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="team-item text-center rounded overflow-hidden">
-                                <div id="myObject<?php echo $i; ?>">
-                                    <div class="rounded-circle overflow-hidden m-4">
-                                        <img class="img-fluid" src="img1/活動<?php echo $i; ?>.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div id="myPopup<?php echo $i; ?>" class="popup">
-                                    <table>
-                                        <?php
-                                        echo "活動簡介：" . $row['Summery'] . "<br> 活動時間：" . $row['Date'] . "<br>活動地點：" . $row['Location'] . "<br>報名截止時間：" . $row['endDate'] . "<br>";
-                                        ?>
-                                    </table>
-                                </div>
-                                <script>
-                                    var object<?php echo $i; ?> = document.getElementById("myObject<?php echo $i; ?>");
-                                    var popup<?php echo $i; ?> = document.getElementById("myPopup<?php echo $i; ?>");
-
-                                    object<?php echo $i; ?>.addEventListener("mouseover", function() {
-                                        popup<?php echo $i; ?>.style.display = "block";
-                                    });
-
-                                    object<?php echo $i; ?>.addEventListener("mouseout", function() {
-                                        popup<?php echo $i; ?>.style.display = "none";
-                                    });
-                                </script>
-
-                                <h5 class="mb-0"><?php echo $row['Name']; ?></h5>
-                                <small><?php echo $row['Date']; ?></small>
-
-                                <form action="dbaction.php" method="post">
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <button class="btn btn-primary mx-1" type="submit">刪除</button>
-                                        <input type="hidden" name="dbaction" value="delete">
-                                        <input type="hidden" name="Name" value="<?php echo $row['Name']; ?>">
-
-                                </form>
-                                <form action="updateAct.php" method="post">
-                                    <button class="btn btn-primary mx-1" type="submit">修改</button>
-                                    <input type="hidden" name="actName" value="<?php echo $row['Name']; ?>">
-                                </form>
-                                <form action="attendance.php" method="post">
-                                    <button class="btn btn-primary mx-1" type="submit">簽到名單</button>
-                                    <input type="hidden" name="actName" value="<?php echo $row['Name']; ?>">
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" name="Date" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">活動日期</label>
                             </div>
-                            </form>
                         </div>
+
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" name="startDate" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">開始報名時間</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input type="datetime-local" class="form-control" name="endDate" placeholder="Date & Time" data-target="#date3" />
+                                <label for="datetime">報名截止時間</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="Location" placeholder="Your Name">
+                                <label for="location">地點</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" name="Summery"></textarea>
+                                <label for="participantLimit">簡介</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="People" placeholder="Your Name">
+                                <label for="participantMaxLimit">人數上限</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="Organiser" placeholder="Your Name">
+                                <label for="contactPerson">聯絡人</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" name="Phone" placeholder="Your Name">
+                                <label for="message">聯絡電話</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-floating">
+                                <input type="email" class="form-control" name="Email" placeholder="Your Email">
+                                <label for="contactEmail">聯絡信箱</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Special Request" name="Note" style="height: 100px"></textarea>
+                                <label for="message">補充事項
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-    <?php
-                    }
-                }
-                mysqli_close($link);
-    ?>
         </div>
-
-        <!-- Back to Top -->
-        <a href=" #" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
-
+    <!--footer start-->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
+
                 <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
@@ -234,6 +197,10 @@
             </div>
         </div>
     </div>
+    <!--footer end-->
+
+
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

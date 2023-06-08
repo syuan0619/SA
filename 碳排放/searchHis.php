@@ -117,24 +117,23 @@ $end_date = $_POST['end_date'];
         $bbb = array();
 
         $timestamp = strtotime("$start_date");
-        $aa = date ("n",$timestamp);
+        $aa = date("n", $timestamp);
         $timestamp = strtotime("$end_date");
-        $bb = date ("n",$timestamp);
+        $bb = date("n", $timestamp);
 
 
         if ($ID != null && $Name != null) {
             $link = mysqli_connect("localhost", "root", "", "sa");
-            $C = "select SUM(CRecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
-
+            $C = "select SUM(Crecord) FROM history where Date>='$start_date' and Date<='$end_date' ";
             $sql  = "select * from history where Name='$Name' and Date>='$start_date' and Date<='$end_date' order by Date";
             $result = mysqli_query($link, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>", $row['Date'], "</td><td>", $row['kind'], "</td><td>", $row['Crecord'], "</td><td>", "</td></tr>";
                 $timestamp = strtotime($row["Date"]);
-                if (date("n",$timestamp) == "$aa"){
+                if (date("n", $timestamp) == "$aa") {
                     array_push($aaa, $row['Crecord']);
                 };
-                if (date("n",$timestamp) == "$bb"){
+                if (date("n", $timestamp) == "$bb") {
                     array_push($bbb, $row['Crecord']);
                 };
                 echo "<br>";
@@ -148,46 +147,71 @@ $end_date = $_POST['end_date'];
         <?php
 
         } ?>
-       <div class="container text-center my-1 pt-1 pb-1">
+        <div class="container text-center my-1 pt-1 pb-1">
             <?php
-            
+
             $timestamp = strtotime("$start_date");
-            echo date ("n",$timestamp),"月您的碳排放量為:",array_sum($aaa);
+            echo date("n", $timestamp), "月您的碳排放量為:", array_sum($aaa);
             echo "<br>";
-            
+
             $timestamp = strtotime("$end_date");
-            echo date ("n",$timestamp),"月您的碳排放量為:",array_sum($bbb);
+            echo date("n", $timestamp), "月您的碳排放量為:", array_sum($bbb);
 
             echo "<br>";
-            $c = array_sum($aaa)/array_sum($bbb) ;
-            $c = number_format($c,2);
-            echo "您的碳排放量差距了",$c,"倍" ;
+            $c = array_sum($aaa) / array_sum($bbb);
+            $c = number_format($c, 2);
+            echo "您的碳排放量差距了", $c, "倍";
             ?>
+        </div>
+
+
+
+
+    </table>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(02)2905-2000</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>053792@mail.fju.edu.tw</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+</body>
 
 
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-
-
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-            </div>
-
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="lib/wow/wow.min.js"></script>
-            <script src="lib/easing/easing.min.js"></script>
-            <script src="lib/waypoints/waypoints.min.js"></script>
-            <script src="lib/counterup/counterup.min.js"></script>
-            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-            <script src="lib/tempusdominus/js/moment.min.js"></script>
-            <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-            <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-            <!-- Template Javascript -->
-            <script src="js/main.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 
 </html>

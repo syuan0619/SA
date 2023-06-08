@@ -113,12 +113,11 @@
 
                     </select>
                     <h1>請輸入數值</h1>
-                    <input type="number" name="calculate" required>
+                    <input type="number" name="calculate" >
                     <br>
                     <br>
-                    <input class="btn btn-primary py-2 px-4" type="submit" name="計算" value="開始計算" required>
-                    <?php
-                    if (isset($_POST['calculate']) && isset($_POST['kind'])) {
+                    <input class="btn btn-primary py-2 px-4" type="submit" name="計算" value="開始計算" >
+                    <?php if (isset($_POST['calculate']) && isset($_POST['kind'])) {
                         $calculate = $_POST['calculate'];
                         $kind = $_POST['kind'];
                         switch ($kind) {
@@ -145,14 +144,17 @@
                                 break;
                         }
                         echo "<h3> {$kind} 共製造 {$result}公斤的二氧化碳</h3>";
+                        if (!empty($result)) {
+                    ?>
+                            <form method="post" action="insert_his.php">
+                                <input type="hidden" name="result" value="<?php echo $result; ?>">
+                                <input type="hidden" name="kind" value="<?php echo $kind; ?>">
+                                <input class="btn btn-primary py-2 px-4" type="submit" value="儲存結果" required>
+                            </form>
+                    <?php
+                        }
                     }
                     ?>
-                </form>
-                <form method="post" action="insert_his.php">
-                    <input type="hidden" name="result" value="<?php echo $result; ?>">
-                    <input type="hidden" name="kind" value="<?php echo $kind; ?>">
-                    <input class="btn btn-primary py-2 px-4" type="submit" value="儲存結果" required>
-                </form>
             </div>
         </div>
     </div>
@@ -166,19 +168,16 @@
         <div class="container">
             <div class="copyright">
                 <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(02)2905-2000</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>053792@mail.fju.edu.tw</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>

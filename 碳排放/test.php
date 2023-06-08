@@ -1,17 +1,45 @@
 <?php
+session_start();
+
+// 检查管理员登录状态
+
+// 获取报名人员列表
 $link = mysqli_connect("localhost", "root", "", "sa");
-$sql = "SELECT MAX(ID) AS maxId FROM event";
+$sql = "SELECT * FROM signup";
 $result = mysqli_query($link, $sql);
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $maxID = $row['maxId'];
-}
-for ($i = 0; $i <= $maxID; $i++) {
-    $link = mysqli_connect("localhost", "root", "", "sa");
-    $sql  = "select Summery,DATE_FORMAT(Date, '%Y-%m-%d %H:%i') AS Date,Location,DATE_FORMAT(endDate, '%Y-%m-%d %H:%i') AS endDate from event  where ID=$i limit 1";
-    $result = mysqli_query($link, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "活動簡介：", $row['Summery'], "<br> 活動時間：", $row['Date'], "<br>活動地點：", $row['Location'], "<br>報名截止時間：", $row['endDate'], "<br></tr>";
-        echo $row['Date'];
+// 处理勾选表单提交
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // 获取勾选结果
+    $attendees = $_POST['attendee'];
+
+    // 更新报名人员的出席状态
+    foreach ($attendees as $attendee) {
+        $attendeeID = mysqli_real_escape_string($link, $attendee);
+        $sql = "UPDATE signup SET Attendance = 1 WHERE ID = '$attendeeID'";
+        mysqli_query($link, $sql);
     }
+
+    echo "出席状态更新成功!";
 }
+
+?>
+
+<form method="post" action="">
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>出席</th>
+        </tr>
+        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+            <tr>
+                <td><?php echo $row['Name']; ?></td>
+                <td>
+                    <input type="checkbox" name="attendee[]" value="<?php echo $row['ID']; ?>">
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+    <br>
+    <button type="submit">更新出席狀態</button>
+</form>

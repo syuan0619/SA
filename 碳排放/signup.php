@@ -89,13 +89,51 @@
 
         <div class="container-xxl py-5 bg-dark hero-header mb-5">
             <div class="container text-center my-5 pt-5 pb-4">
-                <h1 class="display-3 text-white mb-3 animated slideInDown">報名</h1>
+                <h1 class="text-white mb-4">報名 <?php echo $_POST["actName"]; ?></h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center text-uppercase">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Signup</li>
                     </ol>
+                    <h5 class="text-white mb-4">
+                        <table class="container-xxl py-5">
+
+
+                            <thead>
+                                <tr>
+                                    <th>報名開始日期</th>
+                                    <th>報名截止日期</th>
+                                    <th>活動地點</th>
+                                    <th>主辦人</th>
+                                    <th>聯絡信箱</th>
+                                    <th>連絡電話</th>
+                                    <th>注意事項</th>
+                                    <th>可報名人數</th>
+                                    <th>目前報名人數</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            $Name = $_POST["actName"];
+                            $link = mysqli_connect("localhost", "root", "", "sa");
+                            $sql = "select * from event where Name = '$Name'";
+                            $result = mysqli_query($link, $sql);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr><td>", $row['startDate'], "</td><td>", $row['endDate'], "</td><td>", $row['Location'], " </td><td>", $row['Organiser'], "</td><td>", $row['Email'], " </td><td>", $row['Phone'], " </td><td>", $row['Note'], "<td>", $row['People'], " </td>";
+                            }
+                            $link1 = mysqli_connect("localhost", "root", "", "sa");
+                            $sql1 = "SELECT SUM(People) AS TotalPeople FROM signup WHERE actName = '$Name'";
+                            $result1 = mysqli_query($link1, $sql1);
+                            while ($row = mysqli_fetch_assoc($result1)) {
+                                echo "<td>", $row['TotalPeople'], "</td></tr>";
+                            }
+
+                            ?>
+
+
+
+                        </table>
+                    </h5>
                 </nav>
             </div>
         </div>
@@ -115,19 +153,19 @@
                     <div class="row g-3">
                         <div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" name="name" placeholder="Your Name" require>
+                                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
                                 <label for="name">姓名</label>
                             </div>
                         </div>
                         <div>
                             <div class="form-floating">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                                 <label for="email">電子信箱</label>
                             </div>
                         </div>
                         <div>
                             <div class="form-floating">
-                                <input type="text" class="form-control datetimepicker-input" name="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" require />
+                                <input type="text" class="form-control datetimepicker-input" name="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" required>
                                 <label for="datetime">連絡電話</label>
                             </div>
                         </div>
@@ -153,6 +191,8 @@
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">確認</button>
                             <input type="hidden" name="actName" value="<?php echo $_POST["actName"]; ?>">
+                            <input type="hidden" name="dbaction" value="update">
+
                         </div>
                     </div>
                 </form>

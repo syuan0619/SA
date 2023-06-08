@@ -55,83 +55,95 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="index.php" class="nav-item nav-link">首頁</a>
-                        <a href="signin.php" class="nav-item nav-link">簽到</a>
-                        <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
-                        <a href="count.php" class="nav-item nav-link">計算</a>
-                        <a href="information.php" class="nav-item nav-link">個人資料</a>
+                        <?php if ($_SESSION['Level'] == 1) { ?>
+                            <li>
+                                <a href="index.php" class="btn btn-primary py-2 px-4">首頁</a>
+                                <a href="actAdmin.php" class="btn btn-primary py-2 px-4">活動管理</a>
+                                <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                            </li>
+                        <?php } else { ?>
 
+                            <?php if (empty($_SESSION["ID"])) { ?>
                     </div>
+                    <li>
+                        <a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
+                        <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
+                    </li>
+                <?php } else { ?>
+                    <a href="index.php" class="nav-item nav-link">首頁</a>
+                    <a href="actUser.php" class="nav-item nav-link">活動</a>
+                    <a href="signin.php" class="nav-item nav-link">簽到</a>
+                    <a href="history.php" class="nav-item nav-link">歷史紀錄</a>
+                    <a href="count.php" class="nav-item nav-link">計算</a>
+                    <a href="information.php" class="nav-item nav-link">個人資料</a>
                 </div>
-                <div>
-                    <?php if (empty($_SESSION["ID"])) { ?>
-                        <li><a href="login.php" class="btn btn-primary py-2 px-4">登入</a>
-                            <a href="insert.php" class="btn btn-primary py-2 px-4">註冊</a>
-                        </li>
-
-                    <?php } else { ?>
-                        <li> <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
-                            <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
-                        </li>
-
-                    <?php } ?>
+                <li>
+                    <a class="btn btn-primary py-2 px-4"><?php echo $_SESSION["Name"] ?> , 您好</a>
+                    <a href="logout.php" class="btn btn-primary py-2 px-4">登出</a>
+                </li>
+        <?php }
+                        } ?>
+        </div>
+    </div>
 
 
+    </nav>
+
+    </div>
 
 
+    </div>
+    </nav>
 
-                </div>
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container text-center my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">登入</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">登入</li>
+                </ol>
             </nav>
-
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">登入</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">登入</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
         </div>
-        <!-- Navbar & Hero End -->
+    </div>
+    </div>
+    <!-- Navbar & Hero End -->
 
 
-        <!-- Reservation Start -->
-        <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-0">
+    <!-- Reservation Start -->
+    <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="row g-0">
 
-                <div class=" bg-dark d-flex align-items-center">
-                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                        <h1 class="text-white mb-4">登入</h1>
-                        <form action="logincheck.php" method="post">
-                            <div class="row g-3">
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="ID" placeholder="帳號" require>
-                                        <label for="帳號">帳號</label>
-                                    </div>
+            <div class=" bg-dark d-flex align-items-center">
+                <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+                    <h1 class="text-white mb-4">登入</h1>
+                    <form action="logincheck.php" method="post">
+                        <div class="row g-3">
+                            <div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="ID" placeholder="帳號" required>
+                                    <label for="帳號">帳號</label>
                                 </div>
-                                <div>
-                                    <div class="form-floating">
-                                        <input type="password" class="form-control" name="password" placeholder="密碼" require>
-                                        <label for="密碼">密碼</label>
-                                    </div>
+                            </div>
+                            <div>
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" name="password" placeholder="密碼" required>
+                                    <label for="密碼">密碼</label>
                                 </div>
-                                <div class="col-6">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
-                                </div>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-primary w-100 py-3" type="submit">登入</button>
+                            </div>
 
-                        </form>
-                    </div>
-
+                    </form>
                 </div>
 
             </div>
 
         </div>
+
+    </div>
     </div>
 
 
@@ -143,59 +155,15 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Reservation</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>242新北市新莊區中正路510號</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(02)2905-2000</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>053792@mail.fju.edu.tw</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
-                    <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                    <p>09AM - 09PM</p>
-                    <h5 class="text-light fw-normal">Sunday</h5>
-                    <p>10AM - 08PM</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
                     </div>
                 </div>
             </div>

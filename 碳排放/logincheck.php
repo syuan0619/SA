@@ -15,7 +15,7 @@ if (isset($row)) {
 } else {
 ?>
     <script>
-        alert("密碼錯誤!");
+        alert("帳號或密碼錯誤!");
         location.href = "login.php";
     </script>
 <?php
